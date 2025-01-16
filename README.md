@@ -1,16 +1,30 @@
-# mvvm_statemanagements
+# mvvm_riverpod
 
-A new Flutter project.
+A example flutter app movies using [MVVM](https://learn.microsoft.com/pt-br/windows/uwp/data-binding/data-binding-and-mvvm) with [Riverpod](https://pub.dev/packages/riverpod) state management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+`git clone git@github.com:kauemurakami/mvvm_riverpod.git`
+<br/>
 
-A few resources to get you started if this is your first Flutter project:
+**Create account** in [The movie db](https://www.themoviedb.org/).
+After, click in your picture/initial letter name circle in top right, find `settings`, in `settings` find for `API` and you can see your API's `api key` and `token`.
+<br/>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### Create file .env
+In your project root folder, in the case is `mvvm_riverpod`, right click, select the option `create folder` named it with `assets`, inside `create file` with name `.env`. Now in your `pubspec.yaml` go at section `assets`.
+```yaml
+assets:
+    - assets/.env
+```
+```.env
+MOVIES_API_KEY = "YOUR_API_KEY"
+MOVIES_BEARERTOKEN = "YOUR_API_TOKEN"
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Run project
+
+`flutter packages get`
+<br/>
+
+`flutter run`
