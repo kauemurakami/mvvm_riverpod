@@ -21,6 +21,7 @@ assets:
 MOVIES_API_KEY = "YOUR_API_KEY"
 MOVIES_BEARERTOKEN = "YOUR_API_TOKEN"
 ```
+Add `*.env` in your `gitignore`
 
 #### Run project
 
