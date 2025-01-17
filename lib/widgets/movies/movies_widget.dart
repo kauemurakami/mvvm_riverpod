@@ -85,9 +85,9 @@ class MoviesWidget extends ConsumerWidget {
                               style: const TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            const FavoriteBtnWidget(
-                                // movieModel: movieModel,
-                                )
+                            FavoriteBtnWidget(
+                              movie: movieState,
+                            )
                           ],
                         ),
                       ],

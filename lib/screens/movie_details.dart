@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_statemanagements/constants/api_constants.dart';
-import 'package:mvvm_statemanagements/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import 'package:mvvm_statemanagements/widgets/movies/favorite_btn.dart';
 
@@ -82,7 +81,7 @@ class MovieDetailsScreen extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 GenresListWidget(
-                                    // movieModel: movieModel,
+                                    // movie: movieModel,
                                     ),
                                 const SizedBox(height: 15),
                                 Text(
@@ -104,11 +103,11 @@ class MovieDetailsScreen extends ConsumerWidget {
                             color: Theme.of(context).cardColor,
                             shape: BoxShape.circle,
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(6.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
                             child: FavoriteBtnWidget(
-                                // movieModel: movieModel,
-                                ),
+                              movie: movieState,
+                            ),
                           ),
                         ),
                       ),
