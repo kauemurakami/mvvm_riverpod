@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_statemanagements/enums/theme_enums.dart';
+import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import 'package:mvvm_statemanagements/view_models/theme_provider.dart';
 
 import '../constants/my_app_icons.dart';
@@ -43,10 +44,33 @@ class MoviesScreen extends StatelessWidget {
           }),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return MoviesWidget();
+      body: Consumer(
+        builder: (context, WidgetRef ref, child) {
+          final moviesState = ref.watch(moviesProvider);
+          if (moviesState.isLoading && moviesState.moviesList.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          } else if (moviesState.fetchMoviesError.isNotEmpty) {
+            return Center(
+              child: Text(moviesState.fetchMoviesError),
+            );
+          }
+          return NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              if (notification.metrics.pixels == notification.metrics.maxScrollExtent && !moviesState.isLoading) {
+                ref.read(moviesProvider.notifier).getMovies();
+                return true;
+              }
+              return false;
+            },
+            child: ListView.builder(
+              itemCount: moviesState.moviesList.length,
+              itemBuilder: (context, index) {
+                return const MoviesWidget();
+              },
+            ),
+          );
         },
       ),
     );

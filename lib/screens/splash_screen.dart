@@ -6,7 +6,8 @@ import 'package:mvvm_statemanagements/service/navigation_service.dart';
 import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import 'package:mvvm_statemanagements/widgets/my_error_widget.dart';
 
-final initializationProvider = FutureProvider((ref) async {
+final initializationProvider = FutureProvider.autoDispose<void>((ref) async {
+  ref.keepAlive();
   await Future.microtask(() async {
     await ref.read(moviesProvider.notifier).getMovies();
   });
