@@ -5,6 +5,7 @@ class ApiConstants {
   static String bearerToken = dotenv.get('MOVIES_BEARERTOKEN');
 
   static String baseUrl = "https://api.themoviedb.org/3";
+  static String imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
   static Map<String, String> get headers => {
         'Authorization': 'Bearer $bearerToken',
         'accept': 'application/json',

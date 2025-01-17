@@ -67,7 +67,7 @@ class MoviesScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: moviesState.moviesList.length,
               itemBuilder: (context, index) {
-                return const MoviesWidget();
+                return MoviesWidget(index:index);
               },
             ),
           );

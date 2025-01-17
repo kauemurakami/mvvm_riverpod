@@ -8,12 +8,21 @@ final moviesProvider = StateNotifierProvider<MoviesProvider, MoviesState>(
   (_) => MoviesProvider(),
 );
 
+final currentMovie = Provider.family<MovieModel, int>(
+  (ref, index) {
+    final movieState = ref.watch(moviesProvider);
+    return movieState.moviesList[index];
+  },
+);
+
 class MoviesProvider extends StateNotifier<MoviesState> {
   MoviesProvider() : super(MoviesState());
 
   final MoviesRepository _moviesRepository = getIt<MoviesRepository>();
 
   Future<void> getMovies() async {
+    if (state.isLoading) return;
+
     state = state.copyWith(isLoading: true);
     try {
       if (state.genresList.isEmpty) {
