@@ -25,13 +25,6 @@ class FavoritesProvider extends StateNotifier<FavoritesState> {
         ? state.favoritesList.where((element) => element.id != movieModel.id).toList()
         : [...state.favoritesList, movieModel];
     state = state.copyWith(favoritesList: updatedFavorites);
-    // if (isFavorite(movieModel)) {
-    //   state.favoritesList.removeWhere(
-    //     (movie) => movie.id == movieModel.id,
-    //   );
-    // } else {
-    //   state.favoritesList.add(movieModel);
-    // }
     await saveFavorites();
   }
 
@@ -50,18 +43,12 @@ class FavoritesProvider extends StateNotifier<FavoritesState> {
   Future<void> loadFavorites() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<String> stringList = prefs.getStringList(MyAppConstants.favoritesKey) ?? [];
-    state.favoritesList.clear();
-    state.favoritesList.addAll(
-      stringList.map(
-        (movie) => MovieModel.fromJson(
-          json.decode(movie),
-        ),
-      ),
-    );
+    final movies = stringList.map((movie) => MovieModel.fromJson(json.decode(movie))).toList();
+    state = state.copyWith(favoritesList: movies);
   }
 
   void clearFavorites() async {
-    state.favoritesList.clear();
+    state = state.copyWith(favoritesList: []);
     await saveFavorites();
   }
 }

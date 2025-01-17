@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_statemanagements/screens/movies_screen.dart';
 import 'package:mvvm_statemanagements/service/init_getit.dart';
 import 'package:mvvm_statemanagements/service/navigation_service.dart';
+import 'package:mvvm_statemanagements/view_models/favorites/favorites_provider.dart';
 import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import 'package:mvvm_statemanagements/widgets/my_error_widget.dart';
 
@@ -10,6 +11,7 @@ final initializationProvider = FutureProvider.autoDispose<void>((ref) async {
   ref.keepAlive();
   await Future.microtask(() async {
     await ref.read(moviesProvider.notifier).getMovies();
+    await ref.read(favoritesProvider.notifier).loadFavorites();
   });
 });
 

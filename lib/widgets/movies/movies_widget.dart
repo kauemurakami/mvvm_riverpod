@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_statemanagements/constants/api_constants.dart';
 import 'package:mvvm_statemanagements/constants/my_app_icons.dart';
+import 'package:mvvm_statemanagements/models/movies_model.dart';
 import 'package:mvvm_statemanagements/screens/movie_details.dart';
 import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import '../../service/init_getit.dart';
@@ -12,14 +13,14 @@ import 'genres_list_widget.dart';
 
 class MoviesWidget extends ConsumerWidget {
   const MoviesWidget({
-    required this.index,
+    required this.movieModel,
     super.key,
   });
 
-  final int index;
+  final MovieModel movieModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movieState = ref.watch(currentMovie(index));
+    // final movieState = ref.watch(currentMovie(index));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -29,7 +30,7 @@ class MoviesWidget extends ConsumerWidget {
           borderRadius: BorderRadius.circular(12.0),
           onTap: () {
             getIt<NavigationService>().navigate(
-              MovieDetailsScreen(index: index),
+              MovieDetailsScreen(movieModel: movieModel),
             );
           },
           child: Padding(
@@ -42,7 +43,7 @@ class MoviesWidget extends ConsumerWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: CachedImageWidget(
-                      imgUrl: "${ApiConstants.imageBaseUrl}${movieState.backdropPath}",
+                      imgUrl: "${ApiConstants.imageBaseUrl}${movieModel.backdropPath}",
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -51,7 +52,7 @@ class MoviesWidget extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          movieState.originalTitle,
+                          movieModel.originalTitle,
                           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 10),
@@ -63,7 +64,7 @@ class MoviesWidget extends ConsumerWidget {
                               size: 20,
                             ),
                             const SizedBox(width: 5),
-                            Text("${movieState.voteAverage.toStringAsFixed(1)}/10")
+                            Text("${movieModel.voteAverage.toStringAsFixed(1)}/10")
                           ],
                         ),
                         const SizedBox(height: 10),
@@ -81,12 +82,12 @@ class MoviesWidget extends ConsumerWidget {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              movieState.releaseDate,
+                              movieModel.releaseDate,
                               style: const TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
                             FavoriteBtnWidget(
-                              movie: movieState,
+                              movie: movieModel,
                             )
                           ],
                         ),
