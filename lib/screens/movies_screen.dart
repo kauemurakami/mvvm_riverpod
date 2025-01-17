@@ -9,12 +9,11 @@ import '../service/navigation_service.dart';
 import '../widgets/movies/movies_widget.dart';
 import 'favorites_screen.dart';
 
-class MoviesScreen extends ConsumerWidget {
+class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final themeState = ref.watch(themeProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
@@ -30,14 +29,18 @@ class MoviesScreen extends ConsumerWidget {
               color: Colors.red,
             ),
           ),
-          IconButton(
-            onPressed: () async {
-              await ref.read(themeProvider.notifier).toggleTheme();
-            },
-            icon: Icon(
-              themeState == ThemeEnums.dark ? MyAppIcons.lightMode : MyAppIcons.darkMode,
-            ),
-          ),
+          Consumer(builder: (context, ref, child) {
+            // final themeState = ref.watch(themeProvider);
+            return IconButton(
+              onPressed: () async {
+                await ref.read(themeProvider.notifier).toggleTheme();
+              },
+              icon: Icon(
+                ref.watch(themeProvider) == ThemeEnums.dark ? MyAppIcons.lightMode : MyAppIcons.darkMode,
+                // themeState == ThemeEnums.dark ? MyAppIcons.lightMode : MyAppIcons.darkMode,
+              ),
+            );
+          }),
         ],
       ),
       body: ListView.builder(
