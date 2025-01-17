@@ -1,4 +1,4 @@
-package com.example.mvvm_statemanagements
+package com.mvvm.riverpod
 
 import io.flutter.embedding.android.FlutterActivity
 
