@@ -4,6 +4,10 @@ import 'package:mvvm_statemanagements/repository/movies_repo.dart';
 import 'package:mvvm_statemanagements/service/init_getit.dart';
 import 'package:mvvm_statemanagements/view_models/movies/movies_state.dart';
 
+final moviesProvider = StateNotifierProvider<MoviesProvider, MoviesState>(
+  (_) => MoviesProvider(),
+);
+
 class MoviesProvider extends StateNotifier<MoviesState> {
   MoviesProvider() : super(MoviesState());
 

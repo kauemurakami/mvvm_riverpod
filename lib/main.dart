@@ -36,8 +36,8 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movies App',
       theme: themeState == ThemeEnums.dark ? MyThemeData.darkTheme : MyThemeData.lightTheme,
-      home: const MoviesScreen(),
-      // const SplashScreen(), //const MovieDetailsScreen(), //const FavoritesScreen(), //const MoviesScreen(),
+      home: const SplashScreen(),
+      //const MovieDetailsScreen(), //const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }
