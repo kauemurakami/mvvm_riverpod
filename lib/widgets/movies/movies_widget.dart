@@ -4,7 +4,6 @@ import 'package:mvvm_statemanagements/constants/api_constants.dart';
 import 'package:mvvm_statemanagements/constants/my_app_icons.dart';
 import 'package:mvvm_statemanagements/models/movies_model.dart';
 import 'package:mvvm_statemanagements/screens/movie_details.dart';
-import 'package:mvvm_statemanagements/view_models/movies/movies_provider.dart';
 import '../../service/init_getit.dart';
 import '../../service/navigation_service.dart';
 import '../cached_image.dart';
