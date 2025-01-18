@@ -8,7 +8,6 @@ import 'package:mvvm_statemanagements/stream_provider/weather_screen.dart';
 import 'package:mvvm_statemanagements/view_models/theme_provider.dart';
 
 import 'constants/my_theme_data.dart';
-import 'screens/movies_screen.dart';
 import 'screens/splash_screen.dart';
 import 'service/init_getit.dart';
 import 'service/navigation_service.dart';
@@ -41,7 +40,6 @@ class MyApp extends ConsumerWidget {
       home:
           // WeatherScreen(),
           const SplashScreen(),
-      //const MovieDetailsScreen(), //const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }

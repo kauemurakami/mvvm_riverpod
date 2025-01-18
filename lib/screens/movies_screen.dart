@@ -10,11 +10,12 @@ import '../service/navigation_service.dart';
 import '../widgets/movies/movies_widget.dart';
 import 'favorites_screen.dart';
 
-class MoviesScreen extends StatelessWidget {
+class MoviesScreen extends ConsumerWidget {
   const MoviesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final themeState = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),

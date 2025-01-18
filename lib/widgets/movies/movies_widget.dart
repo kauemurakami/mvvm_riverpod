@@ -67,9 +67,9 @@ class MoviesWidget extends ConsumerWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        const GenresListWidget(
-                            // movieModel: movieModel,
-                            ),
+                        GenresListWidget(
+                          movieModel: movieModel,
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

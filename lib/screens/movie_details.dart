@@ -81,8 +81,8 @@ class MovieDetailsScreen extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 GenresListWidget(
-                                    // movie: movieModel,
-                                    ),
+                                  movieModel: movieModel,
+                                ),
                                 const SizedBox(height: 15),
                                 Text(
                                   movieModel.overview,
